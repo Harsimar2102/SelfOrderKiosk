@@ -1,0 +1,134 @@
+  <!--Harsimar Kaur Bhatia and Priyansh Chaudhary-->
+  
+  <!DOCTYPE html>
+	
+  <head>
+  <title>Self Order Kiosk</title>
+  <script src="https://kit.fontawesome.com/9ef0402538.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript">
+		var greyShirtQuantity = 0;
+		var blackShirtQuantity = 0;
+		var blueShirtQuantity = 0;
+		var brownShirtQuantity = 0;
+		var greenShirtQuantity = 0;
+		var userName = "";
+
+		function AddProduct(colour){
+			let quantity = parseInt (prompt("How many Tshirts of this type do u want",''));
+			console.log('', quantity)
+			if (quantity != null && quantity != NaN && quantity >= 0) {
+				switch(colour)
+				{
+					case 'grey_tshirt':
+					greyShirtQuantity = quantity
+					break;
+					case 'black_tshirt':
+					blackShirtQuantity = quantity
+					break;
+					case 'blue_tshirt':
+					blueShirtQuantity = quantity
+					break;
+					case 'brown_tshirt':
+					brownShirtQuantity = quantity
+					break;
+					case 'green_tshirt':
+					greenShirtQuantity = quantity
+					break;
+				}
+			}
+		}
+    function Checkout(){
+		let name=prompt("Enter your name to proceed for checkout",'');
+		userName = name;
+		document.getElementById("checkout_button").disabled = false;
+	}
+
+	function GenerateReceipt(){
+		var subtotal = 
+		(   greyShirtQuantity * 22 +
+			blackShirtQuantity * 20 +
+			blueShirtQuantity * 19 +
+			brownShirtQuantity * 18 +
+			greenShirtQuantity * 17
+		);
+		var taxes = subtotal * 0.13;
+		var grandTotal = subtotal + taxes;
+		document.getElementById("receipt").innerHTML = 
+		"Order Details" + "<br>" + 
+		"Name: " +  userName + "<br>" +
+		"Total number of Grey Tshirt: " + greyShirtQuantity + "<br>" +
+		"Total number of Black Tshirt: " + blackShirtQuantity + "<br>" +
+		"Total number of Blue Tshirt: " + blueShirtQuantity + "<br>" +
+		"Total number of Brown Tshirt: " + brownShirtQuantity + "<br>" +
+		"Total number of Green Tshirt: " + greenShirtQuantity + "<br>" + 
+		"<br>" +
+		"<br>" +
+		"Subtotal: " + subtotal + "<br>" +
+		"Taxes: " + taxes + "<br>" +
+		"Grand Total: " + grandTotal
+
+	}
+
+ </script>
+ </head>
+ <body>
+    
+	   <h1 class="lead"> Welcome To Our Store</h1>
+	  <section>
+	    <div class="assign">
+		<img src="./img/grey_tshirt.png" class="image" alt="Grey_Tshirt">
+		<p>Grey T-Shirt</p>
+		<h5>$22</h5>
+		<span></span>
+		<button class="" onclick="AddProduct('grey_tshirt')">Add to Cart</button>
+		</div>
+		
+	    <div class="assign">
+		<img src="./img/black_tshirt.png" class="image" alt="Black_Tshirt">
+		<p>Black T-Shirt</p>
+		<h5>$20</h5>
+		<span></span>
+		<button onclick="AddProduct('black_tshirt')" >Add to Cart</button>
+		</div>
+		
+		<div class="assign">
+		<img src="./img/blue_tshirt.png" class="image" alt="Blue_Tshirt">
+		<p>Blue T-Shirt</p>
+		<h5>$19</h5>
+		<span></span>
+		<button onclick="AddProduct('blue_tshirt')">Add to Cart</button>
+		</div>
+		
+		<div class="assign">
+		<img src="./img/brown_tshirt.png" class="image" alt="Brown_Tshirt">
+		<p>Brown T-Shirt</p>
+		<h5>$18</h5>
+		<span></span>
+		<button  onclick="AddProduct('brown_tshirt')">Add to Cart</button>
+		</div>
+		
+		<div class="assign">
+		<img src="./img/green-tshirt.png" class="image" alt="Green_Tshirt">
+		<p>Green T-Shirt</p>
+		<h5>$17</h5>
+		<span></span>
+		<button  onclick="AddProduct('green_tshirt')">Add to Cart</button>
+		</div>
+		<br>
+		<br>
+		<div class="">
+			<button onclick="Checkout()">Enter a name to checkout</button>
+		</div>
+	  
+
+		<br>
+		<div class="">
+			<button id="checkout_button" onclick="GenerateReceipt()" disabled>Generate a Receipt</button>
+		</div>
+
+		<br>
+		<br>
+		<p id="receipt"></p>
+ </body>
+ </html>
